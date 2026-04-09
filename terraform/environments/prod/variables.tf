@@ -82,10 +82,10 @@ variable "bastion_instance_type" {
   type = string
 }
 
-variable "jenkins_instance_type" {
-  type = string
-}
+# variable "jenkins_instance_type" {
+#   type = string
+# }
 
-variable "sonarqube_instance_type" {
-  type = string
-}
+# variable "sonarqube_instance_type" {
+#   type = string
+# }
