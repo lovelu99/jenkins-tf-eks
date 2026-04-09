@@ -48,3 +48,24 @@ module "eks" {
     ManagedBy   = "Terraform"
   }
 }
+
+
+module "bastion" {
+  source = "../../modules/ec2"
+
+  name                        = "${var.project_name}-${var.environment}-bastion"
+  ami_id                      = var.ami_id
+  instance_type               = var.bastion_instance_type
+  subnet_id                   = module.vpc.public_subnet_ids[0]
+  vpc_id                      = module.vpc.vpc_id
+  associate_public_ip_address = true
+  key_name                    = var.key_name
+  allowed_ssh_cidrs           = [var.my_ip_cidr]
+
+  tags = {
+    Project     = var.project_name
+    Environment = var.environment
+    Role        = "bastion"
+    ManagedBy   = "Terraform"
+  }
+}
